@@ -18,7 +18,8 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/huggingface/swift-transformers", from: "1.3.0")
+        // swift-transformers vendored locally to avoid version conflicts with WhisperKit
+        // See: https://github.com/FluidInference/FluidAudio/issues/448
     ],
     targets: [
         .target(
@@ -26,7 +27,6 @@ let package = Package(
             dependencies: [
                 "FastClusterWrapper",
                 "MachTaskSelfWrapper",
-                .product(name: "Tokenizers", package: "swift-transformers"),
             ],
             path: "Sources/FluidAudio",
             exclude: [
